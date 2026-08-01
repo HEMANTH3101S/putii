@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Beautiful Journey Through Our Love</title>
+
+<!-- Elegant type pairing: Cormorant Garamond for display, Jost for body/utility -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ LOADING SCREEN ============ -->
+<div id="loading-screen">
+  <div class="loading-heart">❤</div>
+  <p class="loading-text">preparing something for you...</p>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor-dot"></div>
+<div id="cursor-glow"></div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div id="scroll-progress"><div id="scroll-progress-bar"></div></div>
+
+<!-- ============ AMBIENT NIGHT SKY (persistent background) ============ -->
+<canvas id="sky-canvas"></canvas>
+<div id="moon"></div>
+<div id="clouds"></div>
+<div id="pink-glow"></div>
+
+<!-- ============ FLOATING MUSIC BUTTON ============ -->
+<button id="music-btn" aria-label="Play music">
+  <span id="music-icon">♪</span>
+</button>
+<audio id="bg-music" src="music/placeholder.mp3" loop></audio>
+
+<!-- ============ MAIN STAGE ============ -->
+<main id="stage">
+
+  <!-- ---------- INTRO ---------- -->
+  <section class="chapter active" id="intro" data-chapter="intro">
+    <div class="heartbeat-wrap">
+      <div class="heartbeat"></div>
+    </div>
+    <div class="intro-lines">
+      <p class="intro-line" data-line="0">Some people enter our lives...</p>
+      <p class="intro-line" data-line="1">...and quietly change everything.</p>
+      <p class="intro-line" data-line="2">Happy Girlfriend's Day</p>
+      <p class="intro-line" data-line="3">My Chello ❤️</p>
+    </div>
+    <button class="glow-heart" id="intro-heart" aria-label="Continue">
+      <svg viewBox="0 0 32 29" width="42" height="42">
+        <path d="M16 28.5 C 4 20, 0 12.5, 0 7.5 C 0 2.5, 4 0, 8 0 C 11 0, 14 1.5, 16 5 C 18 1.5, 21 0, 24 0 C 28 0, 32 2.5, 32 7.5 C 32 12.5, 28 20, 16 28.5 Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- ---------- SECTION 1: LOVE LETTER ---------- -->
+  <section class="chapter" id="section-letter" data-chapter="letter">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter one</p>
+      <h2 class="chapter-title">A Letter, Before Anything Else</h2>
+      <div class="letter-box glass">
+        <p id="letter-typing" class="typing-text"></p>
+      </div>
+      <p class="letter-closer" id="letter-closer" hidden>Click below if you want to see something that only belongs to us.</p>
+      <button class="continue-btn" id="btn-letter" hidden>Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 2: OUR JOURNEY ---------- -->
+  <section class="chapter" id="section-journey" data-chapter="journey">
+    <div class="chapter-inner">
+      <p class="eyebrow">chapter two</p>
+      <h2 class="chapter-title">Our Journey</h2>
+      <p class="chapter-sub">Ten moments I keep coming back to.</p>
+      <div id="timeline" class="timeline"></div>
+      <button class="continue-btn" id="btn-journey">Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 3: LITTLE THINGS ---------- -->
+  <section class="chapter" id="section-little" data-chapter="little">
+    <div class="chapter-inner">
+      <p class="eyebrow">chapter three</p>
+      <h2 class="chapter-title">Little Things About You</h2>
+      <p class="chapter-sub">Hover each card. These are the small things I notice.</p>
+      <div id="little-grid" class="little-grid"></div>
+      <button class="continue-btn" id="btn-little">Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 4: MEMORY JAR ---------- -->
+  <section class="chapter" id="section-jar" data-chapter="jar">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter four</p>
+      <h2 class="chapter-title">The Memory Jar</h2>
+      <p class="chapter-sub"><span id="jar-count">20</span> memories left inside. Click the jar.</p>
+      <div class="jar-wrap">
+        <svg id="jar-svg" viewBox="0 0 200 260" width="200" height="260">
+          <path d="M60 20 h80 v25 h10 a10 10 0 0 1 10 10 v170 a20 20 0 0 1 -20 20 H60 a20 20 0 0 1 -20 -20 V55 a10 10 0 0 1 10 -10 h10 Z"
+                fill="rgba(255,255,255,0.06)" stroke="url(#jarGrad)" stroke-width="2"/>
+          <rect x="55" y="10" width="90" height="16" rx="4" fill="#C9A66B"/>
+          <defs>
+            <linearGradient id="jarGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FF5FA2"/>
+              <stop offset="1" stop-color="#C9A66B"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div id="jar-note" class="jar-note glass" hidden></div>
+      </div>
+      <button class="continue-btn" id="btn-jar">Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 5: REASONS ---------- -->
+  <section class="chapter" id="section-reasons" data-chapter="reasons">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter five</p>
+      <h2 class="chapter-title">Reasons I Fell in Love</h2>
+      <p class="chapter-sub"><span id="reason-index">1</span> / 50</p>
+      <div class="reason-stage">
+        <div id="reason-particles" class="reason-particles"></div>
+        <p id="reason-text" class="reason-text"></p>
+      </div>
+      <button class="continue-btn" id="btn-reason-next">Next</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 6: PROMISE ---------- -->
+  <section class="chapter" id="section-promise" data-chapter="promise">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter six</p>
+      <h2 class="chapter-title">A Promise</h2>
+      <div class="rose-wrap">
+        <svg id="rose-svg" viewBox="0 0 120 120" width="120" height="120">
+          <g id="rose-petals" transform="translate(60,60)"></g>
+        </svg>
+      </div>
+      <div class="letter-box glass">
+        <p class="promise-text">I'm not going to promise you the sky, because neither of us needs it — we already have the version of us that fits in ordinary days. What I can promise is smaller and truer than that. I'll keep showing up on the days that are hard for you and the days that are hard for me, even when showing up looks like nothing more than a phone call at midnight or sitting quietly next to you while you sort your thoughts. I'll keep learning you, Puttii, because I know people change and I don't ever want to be someone who stopped paying attention.</p>
+        <p class="promise-text">I'll tell you the truth, even when it's inconvenient, because I'd rather you trust me than think well of me for the wrong reasons. I'll be patient on the days you're not patient with yourself. I'll celebrate the small wins nobody else notices — the ones you almost don't mention because you think they're too small to matter. They're not. I'll fight for us instead of around us, which means I'll say the uncomfortable thing instead of letting it sit and rot between us.</p>
+        <p class="promise-text">I can't promise a life with no hard seasons. I can promise that whatever season we're in, I want to be in it with you and not just near you. That's the difference I care about. Pondati, I'm not choosing you today because it's easy — I'm choosing you today because every version of my life that has you in it is the one I'd pick again, on purpose, with my eyes open.</p>
+        <p class="promise-text-final">I'll keep choosing you.</p>
+      </div>
+      <button class="continue-btn" id="btn-promise">Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 7: FUTURE ---------- -->
+  <section class="chapter" id="section-future" data-chapter="future">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter seven</p>
+      <h2 class="chapter-title">Future</h2>
+      <div class="constellation-wrap">
+        <svg id="constellation-svg" viewBox="0 0 400 220" width="100%" height="220"></svg>
+      </div>
+      <p class="future-lead" id="future-lead" hidden>Maybe years from now...</p>
+      <div class="letter-box glass" id="future-text" hidden>
+        <p>...we're somewhere quiet, still figuring things out the way we always have, together instead of separately. Maybe there's a home with your books stacked wrong on my shelf and my coffee mugs in your cabinet. Maybe we're still arguing about the thermostat. Maybe there's a version of us that's a family, or maybe it's just the two of us and that's enough — I don't need the details to know the shape of it feels right.</p>
+        <p>What I want is simple: to keep growing next to you instead of apart from you. To still be the person you call first when something good happens, and the person you call first when something breaks. To build something ordinary and steady, because I think that's what love actually looks like once the beginning wears off — not fireworks every day, but someone who stays.</p>
+      </div>
+      <button class="continue-btn" id="btn-future" hidden>Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 8: GALLERY ---------- -->
+  <section class="chapter" id="section-gallery" data-chapter="gallery">
+    <div class="chapter-inner">
+      <p class="eyebrow">chapter eight</p>
+      <h2 class="chapter-title">Photo Gallery</h2>
+      <p class="chapter-sub">Placeholders for now — swap in the real ones in /images.</p>
+      <div id="gallery-grid" class="gallery-grid"></div>
+      <button class="continue-btn" id="btn-gallery">Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 10: MIDNIGHT SKY ---------- -->
+  <section class="chapter" id="section-midnight" data-chapter="midnight">
+    <div class="chapter-inner">
+      <p class="eyebrow">chapter nine</p>
+      <h2 class="chapter-title">Midnight Sky</h2>
+      <p class="chapter-sub"><span id="midnight-count">0</span> / 25 stars found</p>
+      <div id="midnight-field" class="midnight-field"></div>
+      <div id="midnight-note" class="midnight-note glass" hidden></div>
+      <button class="continue-btn" id="btn-midnight" disabled>Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- SECTION 11: FINAL LETTER ---------- -->
+  <section class="chapter" id="section-final" data-chapter="final">
+    <div class="chapter-inner narrow">
+      <p class="eyebrow">chapter ten</p>
+      <h2 class="chapter-title">The Last Letter</h2>
+      <div class="letter-box glass">
+        <p id="final-typing" class="typing-text"></p>
+      </div>
+      <button class="continue-btn" id="btn-final" hidden>Continue</button>
+    </div>
+  </section>
+
+  <!-- ---------- ENDING ---------- -->
+  <section class="chapter" id="section-ending" data-chapter="ending">
+    <div class="ending-line-wrap">
+      <p class="ending-line" id="ending-line-1">In every lifetime...</p>
+      <p class="ending-line" id="ending-line-2" hidden>I'd still hope to find you.</p>
+    </div>
+    <button class="secret-btn" id="btn-secret" hidden>My Last Secret</button>
+    <div class="final-reveal" id="final-reveal" hidden>
+      <p>Happy Girlfriend's Day</p>
+      <p class="reveal-name">My Puttii</p>
+      <p class="reveal-name">My Chello</p>
+      <p class="reveal-name">My Pondati</p>
+      <p class="reveal-signoff">Forever Yours,<br>Hemanth ❤️</p>
+    </div>
+    <canvas id="fireworks-canvas"></canvas>
+    <div id="petals-container"></div>
+  </section>
+
+</main>
+
+<!-- ---------- SECTION 9: HIDDEN HEARTS (persistent overlay, unlocked after gallery) ---------- -->
+<div id="hidden-hearts-layer"></div>
+<div id="hidden-heart-note" class="hidden-heart-note glass" hidden></div>
+
+<!-- ---------- CINEMATIC TRANSITION VEIL ---------- -->
+<div id="transition-veil"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
