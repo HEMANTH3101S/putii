@@ -127,6 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgMusic = document.getElementById('bg-music');
   let musicPlaying = false;
   musicBtn.addEventListener('click', () => {
+    document.addEventListener('click', () => {
+  if (!musicPlaying) {
+    bgMusic.play().catch(() => {});
+    musicIcon.textContent = '♫';
+    musicBtn.classList.add('playing');
+    musicPlaying = true;
+  }
+}, { once: true });
     if (!musicPlaying) {
       bgMusic.play().catch(() => { /* placeholder mp3 may not exist yet */ });
       musicIcon.textContent = '♫';
@@ -248,15 +256,15 @@ There's more I want to show you than I can say in one letter, so consider this t
      8. SECTION 2 — OUR JOURNEY (timeline)
   --------------------------------------------------------- */
   const timelineCaptions = [
-    "The day I'll never forget.",
-    "You looked so beautiful here.",
+    "I'll never forget you.",
     "This picture still makes me smile.",
-    "I'd choose this memory again.",
-    "The first time I knew.",
-    "A completely ordinary day that wasn't ordinary at all.",
-    "You have no idea how much I laughed here.",
+   " You looked so beautiful here.",
+    "I'd choose you again and again.",
+    "I knew this one is mine.",
+    "A completele package .",
+    "You have no idea how much I love you this weirdo.",
     "This is the face I fell for.",
-    "We almost didn't take this photo.",
+    "your beauty is unmatched.",
     "Still my favorite kind of afternoon."
   ];
   let timelineBuilt = false;
@@ -267,7 +275,14 @@ There's more I want to show you than I can say in one letter, so consider this t
     timelineCaptions.forEach((cap, i) => {
       const card = document.createElement('div');
       card.className = 'timeline-card glass';
-      card.innerHTML = `<div class="timeline-thumb">image ${i + 1}</div><div class="timeline-caption">${cap}</div>`;
+      card.innerHTML = `
+  <div class="timeline-thumb">
+    <img src="images/pic${i + 1}.jpg"
+         alt="Photo ${i + 1}"
+         style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+  </div>
+  <div class="timeline-caption">${cap}</div>
+`;
       wrap.appendChild(card);
       setTimeout(() => card.classList.add('show'), i * 160);
     });
